@@ -2,10 +2,14 @@
   "name": "kejisu-ai-image-hub",
   "version": "1.0.0",
   "private": true,
-  "scripts": {"dev":"next dev","build":"next build","start":"next start"},
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.1",
-    "next": "15.1.2",
+    "next": "15.1.11",
     "openai": "^4.77.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
