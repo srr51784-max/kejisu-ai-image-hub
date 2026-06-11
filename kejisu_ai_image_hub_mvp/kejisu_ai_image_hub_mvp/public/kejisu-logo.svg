@@ -1,0 +1,7 @@
+<svg width="720" height="220" viewBox="0 0 720 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="720" height="220" rx="48" fill="url(#g)"/>
+<text x="70" y="135" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900" letter-spacing="-6">kejisu</text>
+<circle cx="600" cy="110" r="44" fill="url(#o)"/>
+<circle cx="600" cy="110" r="15" fill="#050711"/>
+<defs><linearGradient id="g" x1="0" y1="0" x2="720" y2="220"><stop stop-color="#070915"/><stop offset=".55" stop-color="#12172a"/><stop offset="1" stop-color="#0B3B56"/></linearGradient><linearGradient id="o" x1="556" y1="66" x2="644" y2="154"><stop stop-color="#5AE7FF"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
+</svg>

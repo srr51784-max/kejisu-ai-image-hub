@@ -1,0 +1,9 @@
+"use client";
+import Link from "next/link"; import { useEffect,useState } from "react"; import { browserSupabase } from "@/lib/supabase";
+export default function Admin(){const sb=browserSupabase(); const [orders,setOrders]=useState<any[]>([]); const [msg,setMsg]=useState("");
+ async function token(){const {data}=await sb.auth.getSession(); if(!data.session) location.href="/login"; return data.session?.access_token;}
+ async function load(){const t=await token(); const res=await fetch("/api/admin/recharge",{headers:{Authorization:`Bearer ${t}`}}); const j=await res.json(); if(res.ok)setOrders(j.orders||[]); else setMsg(j.error||"加载失败");}
+ async function act(id:string,decision:string){const t=await token(); const res=await fetch("/api/admin/recharge",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${t}`},body:JSON.stringify({id,decision})}); const j=await res.json(); setMsg(res.ok?"操作成功":j.error||"失败"); load();}
+ useEffect(()=>{load()},[]);
+ return <main className="min-h-screen px-6 py-10"><div className="mx-auto max-w-6xl"><Link href="/dashboard" className="text-white/60">← 返回</Link><h1 className="mt-8 text-5xl font-black">管理员后台</h1>{msg&&<p className="mt-4 text-white/70">{msg}</p>}<div className="mt-8 space-y-4">{orders.map(o=><div className="card p-5" key={o.id}><b>{o.package_name} ¥{o.amount} / {o.points}点</b><p className="mt-2 text-white/50">用户：{o.user_email}</p><p className="text-white/50">状态：{o.status}</p>{o.proof_url&&<a target="_blank" className="text-cyan-300" href={o.proof_url}>查看付款截图</a>}{o.status==="pending"&&<div className="mt-4 flex gap-3"><button className="btn btn-primary" onClick={()=>act(o.id,"approved")}>通过并加点</button><button className="btn btn-dark" onClick={()=>act(o.id,"rejected")}>拒绝</button></div>}</div>)}</div></div></main>
+}
